@@ -54,32 +54,10 @@ def main(output_dir=None):
     spinner.start("Submitting Signal predictions")
     spinner.succeed()
     
-    SubmitSignal('janky')
-    SubmitSignal('danky')
-    SubmitSignal('hanky')
-    SubmitSignal('panky')
-    SubmitSignal('cranky')
-    SubmitSignal('blanky')
-    SubmitSignal('wanky')
-    SubmitSignal('yanky')
-    SubmitSignal('lanky')
-    SubmitSignal('ranky')
-    SubmitSignal('pee')
-    SubmitSignal('poo')
-    SubmitSignal('poop')
-    SubmitSignal('pleep')
-    SubmitSignal('ploop')
-    SubmitSignal('diarrhea')
-    SubmitSignal('coffeesquirts')
-    SubmitSignal('farty')
-    SubmitSignal('bumbum')
-    SubmitSignal('leftbum')
-    SubmitSignal('rightbum')
-    SubmitSignal('topbum')
-    SubmitSignal('bottombum')
-    SubmitSignal('frontbum')
-    SubmitSignal('backbum')
-    SubmitSignal('centerbum')
+    signalaccounts = ["janky", "danky", "hanky", "panky", "cranky", "blanky", "wanky", "yanky", "lanky", "ranky", "pee", "poo", "poop", "pleep", "ploop", "diarrhea", "coffeesquirts", "farty", "bumbum", "leftbum", "rightbum", "topbum", "bottombum", "frontbum", "backbum", "centerbum"]
+    
+    for account in signalaccounts:
+        SubmitSignal(account)
 
 def SubmitSignal(accountName):
     model_id = napi.get_models()[f'{accountName}']
