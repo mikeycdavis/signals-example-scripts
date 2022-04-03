@@ -1,4 +1,5 @@
 import argparse
+import numerapi
 import os
 import pandas as pd
 from halo import Halo
@@ -15,7 +16,7 @@ def main(output_dir=None):
 
     spinner.start('Reading data')
     train = pd.read_csv('example_training_data_yahoo.csv')
-    tournament = pd.read_csv('example_tournament_data_yahoo.csv')
+    tournament = pd.read_csv('tournament_data_yahoo.csv')
     spinner.succeed()
 
     feature_names = train.filter(like='feature_').columns.to_list()
@@ -46,6 +47,44 @@ def main(output_dir=None):
     diagnostic_df = diagnostic_df.drop_duplicates(subset=["bloomberg_ticker", "friday_date"], keep="first")
     diagnostic_df[['bloomberg_ticker', 'friday_date', 'data_type', 'signal']].reset_index(drop=True).to_csv(example_signal_output_path, index=False)
     spinner.succeed()
+    
+    spinner.start("Submitting Signal predictions")
+    spinner.succeed()
+    
+    SubmitSignal('janky')
+    SubmitSignal('danky')
+    SubmitSignal('hanky')
+    SubmitSignal('panky')
+    SubmitSignal('cranky')
+    SubmitSignal('blanky')
+    SubmitSignal('wanky')
+    SubmitSignal('yanky')
+    SubmitSignal('lanky')
+    SubmitSignal('ranky')
+    SubmitSignal('pee')
+    SubmitSignal('poo')
+    SubmitSignal('poop')
+    SubmitSignal('pleep')
+    SubmitSignal('ploop')
+    SubmitSignal('diarrhea')
+    SubmitSignal('coffeesquirts')
+    SubmitSignal('farty')
+    SubmitSignal('bumbum')
+    SubmitSignal('leftbum')
+    SubmitSignal('rightbum')
+    SubmitSignal('topbum')
+    SubmitSignal('bottombum')
+    SubmitSignal('frontbum')
+    SubmitSignal('backbum')
+    SubmitSignal('centerbum')
+
+def SubmitSignal(accountName):
+    public_key = "HSMNVJAP7LXDV5HVSLDHXMEIHALH2UU4"
+    private_key = "PVVU5EUHET5K6K5GIRVBMFYIO43WZRB45QSUWQLWFCSTOLG3JCPBCUPWUO4RYOX6"
+    napi = numerapi.SignalsAPI(public_key, private_key)
+    model_id = napi.get_models()[f'{accountName}']
+   
+    submission = napi.upload_predictions("example_signal_upload.csv", model_id=model_id)
 
 
 if __name__ == '__main__':
