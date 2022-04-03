@@ -10,6 +10,9 @@ PREDICTION_NAME = 'signal'
 
 spinner = Halo(text='', spinner='dots')
 
+public_key = "HSMNVJAP7LXDV5HVSLDHXMEIHALH2UU4"
+private_key = "PVVU5EUHET5K6K5GIRVBMFYIO43WZRB45QSUWQLWFCSTOLG3JCPBCUPWUO4RYOX6"
+napi = numerapi.SignalsAPI(public_key, private_key)
 
 def main(output_dir=None):
     """Creates example_signal_yahoo.csv to upload for validation and live data submission"""
@@ -79,9 +82,6 @@ def main(output_dir=None):
     SubmitSignal('centerbum')
 
 def SubmitSignal(accountName):
-    public_key = "HSMNVJAP7LXDV5HVSLDHXMEIHALH2UU4"
-    private_key = "PVVU5EUHET5K6K5GIRVBMFYIO43WZRB45QSUWQLWFCSTOLG3JCPBCUPWUO4RYOX6"
-    napi = numerapi.SignalsAPI(public_key, private_key)
     model_id = napi.get_models()[f'{accountName}']
    
     submission = napi.upload_predictions("example_signal_upload.csv", model_id=model_id)
