@@ -55,9 +55,13 @@ def main(output_dir=None):
     spinner.succeed()
     
     signalaccounts = ["janky", "danky", "hanky", "panky", "cranky", "blanky", "wanky", "yanky", "lanky", "ranky", "pee", "poo", "poop", "pleep", "ploop", "diarrhea", "coffeesquirts", "farty", "bumbum", "leftbum", "rightbum", "topbum", "bottombum", "frontbum", "backbum", "centerbum"]
-    
+    count = 1
+    numAccounts = len(signalaccounts)
+
     for account in signalaccounts:
+        print(f'{count} of {numAccounts}')
         SubmitSignal(account)
+        count = count + 1
 
 def SubmitSignal(accountName):
     model_id = napi.get_models()[f'{accountName}']
